@@ -11,9 +11,11 @@ def solution(numbers, hand):
         if (n == 1 or n == 4 or n == 7):
             left = keypad[str(n)]
             answer += 'L'
+            
         elif (n == 3 or n == 6 or n == 9):
             right = keypad[str(n)]
             answer += 'R'
+            
         else:
             left_dis = abs(left[0] - keypad[str(n)][0]) + abs(left[1] - keypad[str(n)][1])
             right_dis = abs(right[0] - keypad[str(n)][0]) + abs(right[1] - keypad[str(n)][1])
