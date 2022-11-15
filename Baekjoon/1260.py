@@ -3,7 +3,7 @@ input = sys.stdin.readline
 
 n,m,v = map(int,input().split())
 
-visited = [False] * (n+1)
+visited = [False]*(n+1)
 graph = [[] for _ in range(n+1)]
 
 for i in range(m):
@@ -11,27 +11,27 @@ for i in range(m):
   graph[a].append(b)
   graph[b].append(a)
 
-# dfs
 def dfs(graph,v,visited):
   visited[v] = True
   print(v,end=' ')
   for i in sorted(graph[v]):
-    if not visited[i]:
+    if visited[i] == False:
       dfs(graph,i,visited)
 
 dfs(graph,v,visited)
+
+visited = [False]*(n+1)
 print('')
-# bfs
-visited = [False] * (n+1)
 
-q = [v]
-visited[v] = True
-while q:
-  c = q.pop(0)
-  print(c, end=' ')
-  for nx in sorted(graph[c]):
-    if visited[nx] == False:
-      q.append(nx)
-      visited[nx] = True
+def bfs(graph,v,visited):
+  q=[v]
+  visited[v] = True
+  while q:
+    c = q.pop(0)
+    print(c,end=' ')
+    for i in sorted(graph[c]):
+      if visited[i] == False:
+        q.append(i)
+        visited[i] = True
 
-  
+bfs(graph,v,visited)
