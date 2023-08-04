@@ -1,23 +1,16 @@
 import heapq
-
 def solution(scoville, K):
     answer = 0
-    heap = []
-    heap = scoville
-    heapq.heapify(heap)
-    count = len(scoville) - 1
+    # 힙 자료구조로 변경
+    heapq.heapify(scoville)
+    while True:
+        if scoville[0] >= K:
+            return answer
         
-    for i in range(count):
-        num1 = heapq.heappop(heap)
-        if num1 < K:
-            num2 = heapq.heappop(heap)
-            answer +=1 
-            heapq.heappush(heap, num1 + (num2*2))
-        else:
-            heapq.heappush(heap, num1)
-            break
-            
-    if heapq.heappop(heap) < K:
-        answer = -1
-    
-    return answer
+        if len(scoville) < 2:
+            return -1
+        
+        f = heapq.heappop(scoville)
+        s = heapq.heappop(scoville)
+        heapq.heappush(scoville,f+(s*2))
+        answer += 1
